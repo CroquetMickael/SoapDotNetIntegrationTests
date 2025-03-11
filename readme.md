@@ -18,3 +18,5 @@ Cette série de modules a pour vocation de fournir un template de test d'intégr
 L'accompagnement sera très présent au début, puis s'atténuera progressivement.
 
 ## Modules
+
+### [Module 3: Usage de Microcks](./modules/Module%203%20Usage%20de%20Microcks/readme.md)
