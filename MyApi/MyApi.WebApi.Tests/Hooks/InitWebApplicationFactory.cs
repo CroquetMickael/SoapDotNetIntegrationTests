@@ -32,6 +32,7 @@ internal class InitWebApplicationFactory
                 });
             });
 
+
         var client = application.CreateClient();
 
         scenarioContext.TryAdd(HttpClientKey, client);
