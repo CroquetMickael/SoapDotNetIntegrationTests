@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MyApi.WebApi;
+using MyApi.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,12 @@ builder.Services.AddDbContext<WeatherContext>(options =>
     {
         providerOptions.EnableRetryOnFailure();
     }));
+
+
+builder.Services.AddHttpClient<WeatherService>();
+
+builder.Services.AddSingleton<IWeatherService>(provider => new WeatherService(provider.GetRequiredService<HttpClient>(), "http://whateverUrl"));
+
 
 var app = builder.Build();
 
