@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using MyApi.WebApi.Services;
+using WeatherReference;
 
 namespace MyApi.WebApi.Controllers;
 
@@ -7,10 +9,12 @@ namespace MyApi.WebApi.Controllers;
 public class WeatherForecastController : ControllerBase
 {
     private readonly WeatherContext _weatherContext;
+    private readonly IWeatherService _weatherService;
 
-    public WeatherForecastController(WeatherContext weatherContext)
+    public WeatherForecastController(WeatherContext weatherContext, IWeatherService weatherService)
     {
         _weatherContext = weatherContext;
+        _weatherService = weatherService;
     }
 
     [HttpGet]
@@ -58,5 +62,12 @@ public class WeatherForecastController : ControllerBase
         _weatherContext.SaveChanges();
 
         return Ok();
+    }
+
+    [HttpGet]
+    [Route("byZip")]
+    public Task<WeatherReturn> GetWeatherByZip([FromQuery] string codeZip)
+    {
+        return _weatherService.GetWeather(codeZip);
     }
 }

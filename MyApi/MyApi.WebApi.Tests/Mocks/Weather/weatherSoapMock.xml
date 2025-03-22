@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="3b5fcbef-7ed5-4a42-8e23-1298b1266497" activeEnvironment="Default" name="WeatherSoap2" resourceRoot="" soapui-version="5.8.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:interface xsi:type="con:WsdlInterface" id="9478709e-3338-4922-af9e-5de8057ebc72" wsaVersion="NONE" name="WeatherSoap12" type="wsdl" bindingName="{http://ws.cdyne.com/WeatherWS/}WeatherSoap12" soapVersion="1_2" anonymous="optional" definition="file:/C:/Formation/SoapDotNetIntegrationTests/weatherSoap.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart="file:/C:/Formation/SoapDotNetIntegrationTests/weatherSoap.xml">
+            <con:part>
+                <con:url>file:/C:/Formation/SoapDotNetIntegrationTests/weatherSoap.xml</con:url>
+                <con:content>
+                    <![CDATA[<wsdl:definitions targetNamespace="http://ws.cdyne.com/WeatherWS/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.cdyne.com/WeatherWS/">
+      <s:element name="GetWeatherInformation">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetWeatherInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWeatherInformationResult" type="tns:ArrayOfWeatherDescription"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfWeatherDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WeatherDescription" type="tns:WeatherDescription"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WeatherDescription">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="WeatherID" type="s:short"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCityForecastByZIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityForecastByZIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCityForecastByZIPResult" type="tns:ForecastReturn"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ForecastReturn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="WeatherStationCity" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ForecastResult" type="tns:ArrayOfForecast"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfForecast">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Forecast" nillable="true" type="tns:Forecast"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Forecast">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="WeatherID" type="s:short"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Desciption" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Temperatures" type="tns:temp"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ProbabilityOfPrecipiation" type="tns:POP"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="temp">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MorningLow" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DaytimeHigh" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="POP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nighttime" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Daytime" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCityWeatherByZIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityWeatherByZIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCityWeatherByZIPResult" type="tns:WeatherReturn"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WeatherReturn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="WeatherStationCity" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="WeatherID" type="s:short"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Temperature" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="RelativeHumidity" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Wind" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Pressure" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Visibility" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="WindChill" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfWeatherDescription" nillable="true" type="tns:ArrayOfWeatherDescription"/>
+      <s:element name="ForecastReturn" nillable="true" type="tns:ForecastReturn"/>
+      <s:element name="WeatherReturn" type="tns:WeatherReturn"/>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetWeatherInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWeatherInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWeatherInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityForecastByZIP"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityForecastByZIPResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityWeatherByZIP"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityWeatherByZIPResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationHttpGetIn"/>
+  <wsdl:message name="GetWeatherInformationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfWeatherDescription"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpGetIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:ForecastReturn"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpGetIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:WeatherReturn"/>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationHttpPostIn"/>
+  <wsdl:message name="GetWeatherInformationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfWeatherDescription"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpPostIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ForecastReturn"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpPostIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:WeatherReturn"/>
+  </wsdl:message>
+  <wsdl:portType name="WeatherSoap">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:documentation>Gets Information for each WeatherID</wsdl:documentation>
+      <wsdl:input message="tns:GetWeatherInformationSoapIn"/>
+      <wsdl:output message="tns:GetWeatherInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get your City Forecast Over the Next 7 Days, which
+                is updated hourly. U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityForecastByZIPSoapIn"/>
+      <wsdl:output message="tns:GetCityForecastByZIPSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <wsdl:documentation>Allows you to get your City's Weather, which is updated hourly.
+                U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityWeatherByZIPSoapIn"/>
+      <wsdl:output message="tns:GetCityWeatherByZIPSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WeatherHttpGet">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:documentation>Gets Information for each WeatherID</wsdl:documentation>
+      <wsdl:input message="tns:GetWeatherInformationHttpGetIn"/>
+      <wsdl:output message="tns:GetWeatherInformationHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get your City Forecast Over the Next 7 Days, which
+                is updated hourly. U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityForecastByZIPHttpGetIn"/>
+      <wsdl:output message="tns:GetCityForecastByZIPHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <wsdl:documentation>Allows you to get your City's Weather, which is updated hourly.
+                U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityWeatherByZIPHttpGetIn"/>
+      <wsdl:output message="tns:GetCityWeatherByZIPHttpGetOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WeatherHttpPost">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:documentation>Gets Information for each WeatherID</wsdl:documentation>
+      <wsdl:input message="tns:GetWeatherInformationHttpPostIn"/>
+      <wsdl:output message="tns:GetWeatherInformationHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get your City Forecast Over the Next 7 Days, which
+                is updated hourly. U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityForecastByZIPHttpPostIn"/>
+      <wsdl:output message="tns:GetCityForecastByZIPHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <wsdl:documentation>Allows you to get your City's Weather, which is updated hourly.
+                U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityWeatherByZIPHttpPostIn"/>
+      <wsdl:output message="tns:GetCityWeatherByZIPHttpPostOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WeatherSoap" type="tns:WeatherSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeatherSoap12" type="tns:WeatherSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeatherHttpGet" type="tns:WeatherHttpGet">
+    <http:binding verb="GET"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <http:operation location="/GetWeatherInformation"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <http:operation location="/GetCityForecastByZIP"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <http:operation location="/GetCityWeatherByZIP"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeatherHttpPost" type="tns:WeatherHttpPost">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <http:operation location="/GetWeatherInformation"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <http:operation location="/GetCityForecastByZIP"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <http:operation location="/GetCityWeatherByZIP"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Weather">
+    <wsdl:port name="WeatherSoap" binding="tns:WeatherSoap">
+      <soap:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WeatherSoap12" binding="tns:WeatherSoap12">
+      <soap12:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WeatherHttpGet" binding="tns:WeatherHttpGet">
+      <http:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WeatherHttpPost" binding="tns:WeatherHttpPost">
+      <http:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]>
+                </con:content>
+                <con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+            </con:part>
+        </con:definitionCache>
+        <con:endpoints>
+            <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+        </con:endpoints>
+        <con:operation id="32489844-98a0-44d4-86ad-6378dc268f7c" isOneWay="false" action="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" name="GetCityForecastByZIP" bindingOperationName="GetCityForecastByZIP" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="c7d0df84-1dcb-4421-8e45-52ee921aff1a" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                <con:request>
+                    <![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <weat:GetCityForecastByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>?</weat:ZIP>\r
+      </weat:GetCityForecastByZIP>\r
+   </soap:Body>\r
+</soap:Envelope>]]>
+                </con:request>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/WeatherSoap/GetCityForecastByZIPRequest"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="8e31a430-c188-475d-bc51-ce404867c8a6" isOneWay="false" action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" name="GetCityWeatherByZIP" bindingOperationName="GetCityWeatherByZIP" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="d8d9fadc-3ed2-4c23-912e-7ec22d58faab" name="90Soap12 Request">
+                <con:settings>
+                    <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                </con:settings>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                <con:request>
+                    <![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <weat:GetCityWeatherByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>?</weat:ZIP>\r
+      </weat:GetCityWeatherByZIP>\r
+   </soap:Body>\r
+</soap:Envelope>]]>
+                </con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/WeatherSoap/GetCityWeatherByZIPRequest"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="64c6c685-d11f-492c-9453-a855e9fa70af" isOneWay="false" action="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" name="GetWeatherInformation" bindingOperationName="GetWeatherInformation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="d2ceab44-7870-477c-b50d-2540c95a8d08" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                <con:request>
+                    <![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <weat:GetWeatherInformation/>\r
+   </soap:Body>\r
+</soap:Envelope>]]>
+                </con:request>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/WeatherSoap/GetWeatherInformationRequest"/>
+            </con:call>
+        </con:operation>
+    </con:interface>
+    <con:interface xsi:type="con:WsdlInterface" id="b4fa5dbc-996d-4581-a359-140b53c8637c" wsaVersion="NONE" name="WeatherSoap" type="wsdl" bindingName="{http://ws.cdyne.com/WeatherWS/}WeatherSoap" soapVersion="1_1" anonymous="optional" definition="file:/C:/Formation/SoapDotNetIntegrationTests/weatherSoap.xml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <con:settings/>
+        <con:definitionCache type="TEXT" rootPart="file:\C:\Formation\SoapDotNetIntegrationTests\weatherSoap.xml">
+            <con:part>
+                <con:url>file:\C:\Formation\SoapDotNetIntegrationTests\weatherSoap.xml</con:url>
+                <con:content>
+                    <![CDATA[<wsdl:definitions targetNamespace="http://ws.cdyne.com/WeatherWS/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.cdyne.com/WeatherWS/">
+      <s:element name="GetWeatherInformation">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetWeatherInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWeatherInformationResult" type="tns:ArrayOfWeatherDescription"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfWeatherDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WeatherDescription" type="tns:WeatherDescription"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WeatherDescription">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="WeatherID" type="s:short"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCityForecastByZIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityForecastByZIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCityForecastByZIPResult" type="tns:ForecastReturn"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ForecastReturn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="WeatherStationCity" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ForecastResult" type="tns:ArrayOfForecast"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfForecast">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Forecast" nillable="true" type="tns:Forecast"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Forecast">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:dateTime"/>
+          <s:element minOccurs="1" maxOccurs="1" name="WeatherID" type="s:short"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Desciption" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Temperatures" type="tns:temp"/>
+          <s:element minOccurs="1" maxOccurs="1" name="ProbabilityOfPrecipiation" type="tns:POP"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="temp">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MorningLow" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="DaytimeHigh" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="POP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nighttime" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Daytime" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCityWeatherByZIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityWeatherByZIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCityWeatherByZIPResult" type="tns:WeatherReturn"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WeatherReturn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseText" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="WeatherStationCity" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="WeatherID" type="s:short"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Temperature" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="RelativeHumidity" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Wind" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Pressure" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Visibility" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="WindChill" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfWeatherDescription" nillable="true" type="tns:ArrayOfWeatherDescription"/>
+      <s:element name="ForecastReturn" nillable="true" type="tns:ForecastReturn"/>
+      <s:element name="WeatherReturn" type="tns:WeatherReturn"/>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetWeatherInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWeatherInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWeatherInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityForecastByZIP"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityForecastByZIPResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityWeatherByZIP"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityWeatherByZIPResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationHttpGetIn"/>
+  <wsdl:message name="GetWeatherInformationHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfWeatherDescription"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpGetIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:ForecastReturn"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpGetIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:WeatherReturn"/>
+  </wsdl:message>
+  <wsdl:message name="GetWeatherInformationHttpPostIn"/>
+  <wsdl:message name="GetWeatherInformationHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfWeatherDescription"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpPostIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityForecastByZIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:ForecastReturn"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpPostIn">
+    <wsdl:part name="ZIP" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="GetCityWeatherByZIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:WeatherReturn"/>
+  </wsdl:message>
+  <wsdl:portType name="WeatherSoap">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:documentation>Gets Information for each WeatherID</wsdl:documentation>
+      <wsdl:input message="tns:GetWeatherInformationSoapIn"/>
+      <wsdl:output message="tns:GetWeatherInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get your City Forecast Over the Next 7 Days, which
+                is updated hourly. U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityForecastByZIPSoapIn"/>
+      <wsdl:output message="tns:GetCityForecastByZIPSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <wsdl:documentation>Allows you to get your City's Weather, which is updated hourly.
+                U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityWeatherByZIPSoapIn"/>
+      <wsdl:output message="tns:GetCityWeatherByZIPSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WeatherHttpGet">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:documentation>Gets Information for each WeatherID</wsdl:documentation>
+      <wsdl:input message="tns:GetWeatherInformationHttpGetIn"/>
+      <wsdl:output message="tns:GetWeatherInformationHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get your City Forecast Over the Next 7 Days, which
+                is updated hourly. U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityForecastByZIPHttpGetIn"/>
+      <wsdl:output message="tns:GetCityForecastByZIPHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <wsdl:documentation>Allows you to get your City's Weather, which is updated hourly.
+                U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityWeatherByZIPHttpGetIn"/>
+      <wsdl:output message="tns:GetCityWeatherByZIPHttpGetOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WeatherHttpPost">
+    <wsdl:operation name="GetWeatherInformation">
+      <wsdl:documentation>Gets Information for each WeatherID</wsdl:documentation>
+      <wsdl:input message="tns:GetWeatherInformationHttpPostIn"/>
+      <wsdl:output message="tns:GetWeatherInformationHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <wsdl:documentation>Allows you to get your City Forecast Over the Next 7 Days, which
+                is updated hourly. U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityForecastByZIPHttpPostIn"/>
+      <wsdl:output message="tns:GetCityForecastByZIPHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <wsdl:documentation>Allows you to get your City's Weather, which is updated hourly.
+                U.S. Only</wsdl:documentation>
+      <wsdl:input message="tns:GetCityWeatherByZIPHttpPostIn"/>
+      <wsdl:output message="tns:GetCityWeatherByZIPHttpPostOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WeatherSoap" type="tns:WeatherSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeatherSoap12" type="tns:WeatherSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeatherHttpGet" type="tns:WeatherHttpGet">
+    <http:binding verb="GET"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <http:operation location="/GetWeatherInformation"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <http:operation location="/GetCityForecastByZIP"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <http:operation location="/GetCityWeatherByZIP"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WeatherHttpPost" type="tns:WeatherHttpPost">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="GetWeatherInformation">
+      <http:operation location="/GetWeatherInformation"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityForecastByZIP">
+      <http:operation location="/GetCityForecastByZIP"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityWeatherByZIP">
+      <http:operation location="/GetCityWeatherByZIP"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Weather">
+    <wsdl:port name="WeatherSoap" binding="tns:WeatherSoap">
+      <soap:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WeatherSoap12" binding="tns:WeatherSoap12">
+      <soap12:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WeatherHttpGet" binding="tns:WeatherHttpGet">
+      <http:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="WeatherHttpPost" binding="tns:WeatherHttpPost">
+      <http:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]>
+                </con:content>
+                <con:type>http://schemas.xmlsoap.org/wsdl/</con:type>
+            </con:part>
+        </con:definitionCache>
+        <con:endpoints>
+            <con:endpoint>http://DESKTOP-430PKRK:8088/mockWeatherSoap</con:endpoint>
+            <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+        </con:endpoints>
+        <con:operation id="b99f051f-20eb-40b9-8eb1-b78c72cdd6c9" isOneWay="false" action="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" name="GetCityForecastByZIP" bindingOperationName="GetCityForecastByZIP" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="332dbdcc-6060-4c51-b977-04acfd12b606" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                <con:request>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <weat:GetCityForecastByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>?</weat:ZIP>\r
+      </weat:GetCityForecastByZIP>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]>
+                </con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="a823af50-a289-496d-913d-74036fbc9894" isOneWay="false" action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" name="GetCityWeatherByZIP" bindingOperationName="GetCityWeatherByZIP" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="102a979d-fa34-462e-adfd-93a60bd1cbc4" name="Iowa Request">
+                <con:settings>
+                    <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                </con:settings>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://DESKTOP-430PKRK:8088/mockWeatherSoap</con:endpoint>
+                <con:request>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetCityWeatherByZIP>
+         <!--Optional:-->
+         <weat:ZIP>90</weat:ZIP>
+      </weat:GetCityWeatherByZIP>
+   </soapenv:Body>
+</soapenv:Envelope>]]>
+                </con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+            <con:call id="458011fe-bb42-452c-9a2c-8f0acb0526e2" name="Iowa2 Request">
+                <con:settings>
+                    <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                </con:settings>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://DESKTOP-430PKRK:8088/mockWeatherSoap</con:endpoint>
+                <con:request>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetCityWeatherByZIP>
+         <!--Optional:-->
+         <weat:ZIP>91</weat:ZIP>
+      </weat:GetCityWeatherByZIP>
+   </soapenv:Body>
+</soapenv:Envelope>]]>
+                </con:request>
+                <con:credentials>
+                    <con:authType>No Authorization</con:authType>
+                </con:credentials>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:jmsPropertyConfig/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
+                <con:wsrmConfig version="1.2"/>
+            </con:call>
+        </con:operation>
+        <con:operation id="a8e3545a-dfbb-4362-a6a3-3653e67544e9" isOneWay="false" action="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" name="GetWeatherInformation" bindingOperationName="GetWeatherInformation" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional">
+            <con:settings/>
+            <con:call id="a883ef34-259e-46f8-bc1f-624008fce3b7" name="Request 1">
+                <con:settings/>
+                <con:encoding>UTF-8</con:encoding>
+                <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                <con:request>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <weat:GetWeatherInformation/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]>
+                </con:request>
+                <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetWeatherInformation"/>
+            </con:call>
+        </con:operation>
+    </con:interface>
+    <con:testSuite id="88d71e4f-6160-4fc7-89f5-c06cdf4aa3b6" name="WeatherSoap12 TestSuite">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="67580f8c-c50f-499c-a342-fca9e2a85f23" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCityForecastByZIP TestCase" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="a5af0b65-5bab-478d-803f-007a14234354" name="GetCityForecastByZIP">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap12</con:interface>
+                    <con:operation>GetCityForecastByZIP</con:operation>
+                    <con:request name="GetCityForecastByZIP" id="aee4a56f-688f-4906-baee-032e47306c17">
+                        <con:settings/>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <weat:GetCityForecastByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>?</weat:ZIP>\r
+      </weat:GetCityForecastByZIP>\r
+   </soap:Body>\r
+</soap:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/WeatherSoap/GetCityForecastByZIPRequest" mustUnderstand="NONE" version="200508"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:testCase id="79cf9ee6-1222-4ac0-a304-797a1ae169b1" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCityWeatherByZIP TestCase" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="4803129c-cbeb-47e3-961c-fbe7cadf720d" name="GetCityWeatherByZIP">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap12</con:interface>
+                    <con:operation>GetCityWeatherByZIP</con:operation>
+                    <con:request name="GetCityWeatherByZIP" id="eef3f208-535c-4704-814a-a4d5b88cb90c">
+                        <con:settings/>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <weat:GetCityWeatherByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>?</weat:ZIP>\r
+      </weat:GetCityWeatherByZIP>\r
+   </soap:Body>\r
+</soap:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/WeatherSoap/GetCityWeatherByZIPRequest" mustUnderstand="NONE" version="200508"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:testCase id="97207763-f05a-4b89-b423-7ea4b4f89fb8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetWeatherInformation TestCase" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="38a6219a-d3ea-4e45-9523-03093cdeac7c" name="GetWeatherInformation">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap12</con:interface>
+                    <con:operation>GetWeatherInformation</con:operation>
+                    <con:request name="GetWeatherInformation" id="4e7ec334-4288-477f-9a74-9d33cf1ec5a6">
+                        <con:settings/>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <weat:GetWeatherInformation/>\r
+   </soap:Body>\r
+</soap:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/WeatherSoap/GetWeatherInformationRequest" mustUnderstand="NONE" version="200508"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:properties/>
+    </con:testSuite>
+    <con:testSuite id="c888cdc5-68d2-46d6-bc1a-c096de5e19f7" name="WeatherSoap TestSuite">
+        <con:settings/>
+        <con:runType>SEQUENTIAL</con:runType>
+        <con:testCase id="5bd15be0-4892-483e-aedc-f37c911a8b94" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCityForecastByZIP TestCase" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="2316182a-9786-4f27-b6c3-54b1aac36632" name="GetCityForecastByZIP">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap</con:interface>
+                    <con:operation>GetCityForecastByZIP</con:operation>
+                    <con:request name="GetCityForecastByZIP" id="feee6c1a-2884-46f3-ac1f-f257d7dd01bb">
+                        <con:settings/>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <weat:GetCityForecastByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>?</weat:ZIP>\r
+      </weat:GetCityForecastByZIP>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" mustUnderstand="NONE" version="200508"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:testCase id="40ec7c13-bb98-4cf8-aee8-99658581ac45" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetCityWeatherByZIP TestCase" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="5af074eb-5365-4721-92b9-fc7d74897d0a" name="Iowa Request">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap</con:interface>
+                    <con:operation>GetCityWeatherByZIP</con:operation>
+                    <con:request name="Iowa Request" id="4786a313-fb16-429d-bccb-081567abce50">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <weat:GetCityWeatherByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>91</weat:ZIP>\r
+      </weat:GetCityWeatherByZIP>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" mustUnderstand="NONE" version="200508"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:testStep type="request" id="9ff1bdfc-74ca-471d-af30-6d40c4cebd24" name="Iowa2 Request">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap</con:interface>
+                    <con:operation>GetCityWeatherByZIP</con:operation>
+                    <con:request name="Iowa2 Request" id="4786a313-fb16-429d-bccb-081567abce50">
+                        <con:settings>
+                            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+                        </con:settings>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <weat:GetCityWeatherByZIP>\r
+         <!--Optional:-->\r
+         <weat:ZIP>90</weat:ZIP>\r
+      </weat:GetCityWeatherByZIP>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:jmsPropertyConfig/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" mustUnderstand="NONE" version="200508"/>
+                        <con:wsrmConfig version="1.2"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:testCase id="701062c4-46bd-47ae-b22d-0cae90847722" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetWeatherInformation TestCase" searchProperties="true">
+            <con:settings/>
+            <con:testStep type="request" id="d5b6e09d-692f-42e1-87c6-d168d48350b3" name="GetWeatherInformation">
+                <con:settings/>
+                <con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <con:interface>WeatherSoap</con:interface>
+                    <con:operation>GetWeatherInformation</con:operation>
+                    <con:request name="GetWeatherInformation" id="77157ddd-1421-4e15-9781-54a757a81d16">
+                        <con:settings/>
+                        <con:encoding>UTF-8</con:encoding>
+                        <con:endpoint>http://wsf.cdyne.com/WeatherWS/Weather.asmx</con:endpoint>
+                        <con:request>
+                            <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <weat:GetWeatherInformation/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]>
+                        </con:request>
+                        <con:credentials>
+                            <con:authType>No Authorization</con:authType>
+                        </con:credentials>
+                        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+                        <con:wsaConfig action="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" mustUnderstand="NONE" version="200508"/>
+                    </con:request>
+                </con:config>
+            </con:testStep>
+            <con:properties/>
+        </con:testCase>
+        <con:properties>
+            <con:property>
+                <con:name>Version</con:name>
+                <con:value>1.0</con:value>
+            </con:property>
+        </con:properties>
+    </con:testSuite>
+    <con:mockService id="341928eb-1c4d-4bd3-af2d-9026789b734a" port="8088" path="/mockWeatherSoap" host="DESKTOP-430PKRK" name="WeatherSoap Mock" dispatchResponseMessages="true">
+        <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting>
+        </con:settings>
+        <con:properties>
+            <con:property>
+                <con:name>version</con:name>
+                <con:value>1.0</con:value>
+            </con:property>
+        </con:properties>
+        <con:onRequestScript>
+            import com.eviware.soapui.support.XmlHolder
+            def holder = new XmlHolder(mockRequest.requestContent)
+            def zip = holder["//weat:ZIP"]
+
+            log.info("zip", zip)
+        </con:onRequestScript>
+        <con:mockOperation name="GetCityForecastByZIP" id="d9767b67-7b00-42df-997d-025aac659345" interface="WeatherSoap" operation="GetCityForecastByZIP">
+            <con:settings/>
+            <con:defaultResponse>Response 1</con:defaultResponse>
+            <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+            <con:response name="Response 1" id="9832c49d-4152-4867-9358-b8b93917da76" httpResponseStatus="200" encoding="UTF-8">
+                <con:settings/>
+                <con:responseContent>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetCityForecastByZIPResponse>
+         <!--Optional:-->
+         <weat:GetCityForecastByZIPResult>
+            <weat:Success>?</weat:Success>
+            <!--Optional:-->
+            <weat:ResponseText>?</weat:ResponseText>
+            <!--Optional:-->
+            <weat:State>?</weat:State>
+            <!--Optional:-->
+            <weat:City>?</weat:City>
+            <!--Optional:-->
+            <weat:WeatherStationCity>?</weat:WeatherStationCity>
+            <!--Optional:-->
+            <weat:ForecastResult>
+               <!--Zero or more repetitions:-->
+               <weat:Forecast>
+                  <weat:Date>?</weat:Date>
+                  <weat:WeatherID>?</weat:WeatherID>
+                  <!--Optional:-->
+                  <weat:Desciption>?</weat:Desciption>
+                  <weat:Temperatures>
+                     <!--Optional:-->
+                     <weat:MorningLow>?</weat:MorningLow>
+                     <!--Optional:-->
+                     <weat:DaytimeHigh>?</weat:DaytimeHigh>
+                  </weat:Temperatures>
+                  <weat:ProbabilityOfPrecipiation>
+                     <!--Optional:-->
+                     <weat:Nighttime>?</weat:Nighttime>
+                     <!--Optional:-->
+                     <weat:Daytime>?</weat:Daytime>
+                  </weat:ProbabilityOfPrecipiation>
+               </weat:Forecast>
+            </weat:ForecastResult>
+         </weat:GetCityForecastByZIPResult>
+      </weat:GetCityForecastByZIPResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]>
+                </con:responseContent>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP"/>
+            </con:response>
+            <con:dispatchConfig/>
+        </con:mockOperation>
+        <con:mockOperation name="GetCityWeatherByZIP" id="61113ea5-41c0-4c06-bfb3-55232fc49bbc" interface="WeatherSoap" operation="GetCityWeatherByZIP">
+            <con:settings/>
+            <con:defaultResponse>Response 1</con:defaultResponse>
+            <con:dispatchStyle>SCRIPT</con:dispatchStyle>
+            <con:dispatchPath>
+                import com.eviware.soapui.support.XmlHolder
+                def holder = new XmlHolder(mockRequest.requestContent)
+                holder.declareNamespace("weat", "http://ws.cdyne.com/WeatherWS/")
+                def zip = holder["//weat:GetCityWeatherByZIP/weat:ZIP"]
+
+                if(zip == "90"){
+                return "Iowa Response"
+                } else {
+                return "Iowa2 Response"
+                }
+
+                return "Iowa Response"
+            </con:dispatchPath>
+            <con:response name="Iowa Response" id="01f7def9-eb1f-4bf5-b2ff-518be45cb175" httpResponseStatus="200" encoding="UTF-8">
+                <con:settings/>
+                <con:responseContent>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetCityWeatherByZIPResponse>
+         <weat:GetCityWeatherByZIPResult>
+            <weat:Success>1</weat:Success>
+            <!--Optional:-->
+            <weat:ResponseText>?</weat:ResponseText>
+            <!--Optional:-->
+            <weat:State>Iowa</weat:State>
+            <!--Optional:-->
+            <weat:City>Iowa City</weat:City>
+            <weat:Description>Iowa description</weat:Description>
+            <!--Optional:-->
+            <weat:Temperature>15</weat:Temperature>
+            <!--Optional:-->
+            <weat:RelativeHumidity>90</weat:RelativeHumidity>
+            <!--Optional:-->
+         </weat:GetCityWeatherByZIPResult>
+      </weat:GetCityWeatherByZIPResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]>
+                </con:responseContent>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
+            </con:response>
+            <con:response name="Iowa2 Response" id="01f7def9-eb1f-4bf5-b2ff-518be45cb175" httpResponseStatus="200" encoding="UTF-8">
+                <con:settings/>
+                <con:responseContent>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetCityWeatherByZIPResponse>
+         <weat:GetCityWeatherByZIPResult>
+            <weat:Success>1</weat:Success>
+            <!--Optional:-->
+            <weat:ResponseText>?</weat:ResponseText>
+            <!--Optional:-->
+            <weat:State>Iowa2</weat:State>
+            <!--Optional:-->
+            <weat:City>Iowa City</weat:City>
+            <weat:Description>Iowa description</weat:Description>
+            <!--Optional:-->
+            <weat:Temperature>15</weat:Temperature>
+            <!--Optional:-->
+            <weat:RelativeHumidity>90</weat:RelativeHumidity>
+            <!--Optional:-->
+         </weat:GetCityWeatherByZIPResult>
+      </weat:GetCityWeatherByZIPResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]>
+                </con:responseContent>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP"/>
+            </con:response>
+            <con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </con:mockOperation>
+        <con:mockOperation name="GetWeatherInformation" id="ca09489f-c861-4c08-8c69-1a9c7cbeb282" interface="WeatherSoap" operation="GetWeatherInformation">
+            <con:settings/>
+            <con:defaultResponse>Response 1</con:defaultResponse>
+            <con:dispatchStyle>SEQUENCE</con:dispatchStyle>
+            <con:response name="Response 1" id="f4eeccc7-155f-4318-bd8d-328fc411dd4b" httpResponseStatus="200" encoding="UTF-8">
+                <con:settings/>
+                <con:responseContent>
+                    <![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:weat="http://ws.cdyne.com/WeatherWS/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <weat:GetWeatherInformationResponse>
+         <!--Optional:-->
+         <weat:GetWeatherInformationResult>
+            <!--Zero or more repetitions:-->
+            <weat:WeatherDescription>
+               <weat:WeatherID>?</weat:WeatherID>
+               <!--Optional:-->
+               <weat:Description>?</weat:Description>
+               <!--Optional:-->
+               <weat:PictureURL>?</weat:PictureURL>
+            </weat:WeatherDescription>
+         </weat:GetWeatherInformationResult>
+      </weat:GetWeatherInformationResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]>
+                </con:responseContent>
+                <con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.cdyne.com/WeatherWS/GetWeatherInformation"/>
+            </con:response>
+            <con:dispatchConfig/>
+        </con:mockOperation>
+    </con:mockService>
+    <con:properties>
+        <con:property>
+            <con:name>Version</con:name>
+            <con:value>1.0</con:value>
+        </con:property>
+    </con:properties>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+    <con:oAuth1ProfileContainer/>
+</con:soapui-project>
