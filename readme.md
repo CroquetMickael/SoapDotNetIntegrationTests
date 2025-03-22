@@ -19,4 +19,6 @@ L'accompagnement sera très présent au début, puis s'atténuera progressivemen
 
 ## Modules
 
+### [Module 2: Ajout des tests du service externe](./modules/Module%202%20Ajout%20des%20tests%20du%20service%20externe/readme.md)
+
 ### [Module 3: Usage de Microcks](./modules/Module%203%20Usage%20de%20Microcks/readme.md)
