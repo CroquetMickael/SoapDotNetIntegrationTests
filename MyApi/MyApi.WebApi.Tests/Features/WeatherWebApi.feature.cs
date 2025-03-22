@@ -96,7 +96,7 @@ namespace MyApi.WebApi.Tests.Features
                         "Chilly",
                         "17"});
 #line 6
- testRunner.Given("the existing forecast are", ((string)(null)), table1, "Given ");
+    testRunner.Given("the existing forecast are", ((string)(null)), table1, "Given ");
 #line hidden
         }
         
@@ -127,10 +127,10 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 13
- testRunner.When("I make a GET request to \'weatherforecast\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I make a GET request to \'weatherforecast\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -158,10 +158,10 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 17
- testRunner.When("I make a GET request to \'weatherforecast/2020-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I make a GET request to \'weatherforecast/2020-01-01\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then("the response status code is \'204\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the response status code is \'204\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -197,13 +197,13 @@ this.FeatureBackground();
                             "5",
                             "Bracing"});
 #line 21
- testRunner.Given("the weather forecast", ((string)(null)), table2, "Given ");
+    testRunner.Given("the weather forecast", ((string)(null)), table2, "Given ");
 #line hidden
 #line 24
- testRunner.When("I save it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I save it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
- testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -231,10 +231,10 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 28
- testRunner.When("I make a GET request to \'weatherforecast/2023-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I make a GET request to \'weatherforecast/2023-01-02\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 29
- testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
@@ -245,7 +245,72 @@ this.FeatureBackground();
                             "2",
                             "Bracing"});
 #line 30
- testRunner.And("the response is", ((string)(null)), table3, "And ");
+    testRunner.And("the response is", ((string)(null)), table3, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Get weather from Zip code")]
+        [Xunit.TraitAttribute("FeatureTitle", "WeatherWebApi")]
+        [Xunit.TraitAttribute("Description", "Get weather from Zip code")]
+        public void GetWeatherFromZipCode()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get weather from Zip code", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 34
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Success",
+                            "State",
+                            "City",
+                            "Temperature",
+                            "RelativeHumidity",
+                            "description"});
+                table4.AddRow(new string[] {
+                            "true",
+                            "Iowa",
+                            "Iowa City",
+                            "15",
+                            "90",
+                            "Iowa description"});
+#line 35
+    testRunner.Given("The external service forecast respond", ((string)(null)), table4, "Given ");
+#line hidden
+#line 38
+    testRunner.When("I make a GET request to \'weatherforecast/byZip\' with: \'90\' zip code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 39
+    testRunner.Then("the response status code is \'200\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Success",
+                            "State",
+                            "City",
+                            "Temperature",
+                            "RelativeHumidity",
+                            "description"});
+                table5.AddRow(new string[] {
+                            "true",
+                            "Iowa",
+                            "Iowa City",
+                            "15",
+                            "90",
+                            "Iowa description"});
+#line 40
+    testRunner.And("the response is", ((string)(null)), table5, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

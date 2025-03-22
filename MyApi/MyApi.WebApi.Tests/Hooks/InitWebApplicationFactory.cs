@@ -8,6 +8,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using BoDi;
 using Respawn;
+using MyApi.WebApi.Services;
+using MyApi.WebApi.Tests.Utils;
+using Moq;
+using Newtonsoft.Json.Linq;
 
 namespace MyApi.WebApi.Tests.Hooks;
 
@@ -16,6 +20,7 @@ internal class InitWebApplicationFactory
 {
     internal const string HttpClientKey = nameof(HttpClientKey);
     internal const string ApplicationKey = nameof(ApplicationKey);
+    public static HttpMessageHandlerMock HttpMessageHandlerWeatherService { get; set; } = new();
 
     [BeforeScenario]
     public async Task BeforeScenario(ScenarioContext scenarioContext, IObjectContainer objectContainer)
@@ -29,8 +34,10 @@ internal class InitWebApplicationFactory
                 {
                     ReplaceLogging(services);
                     ReplaceDatabase(services, objectContainer);
+                    ReplaceExternalServices(services, scenarioContext);
                 });
             });
+
 
         var client = application.CreateClient();
 
@@ -76,6 +83,17 @@ internal class InitWebApplicationFactory
 
         objectContainer.RegisterInstanceAs(database);
     }
+
+    public static void ReplaceExternalServices(IServiceCollection services, ScenarioContext scenarioContext)
+    {
+
+        var mockApiSanteMoralPersonne = new Mock<IWeatherService>();
+
+        services.AddTransient(provider => mockApiSanteMoralPersonne.Object);
+        scenarioContext.TryAdd("weatherService", mockApiSanteMoralPersonne);
+
+    }
+
 
     private async Task InitializeRespawnAsync()
     {
