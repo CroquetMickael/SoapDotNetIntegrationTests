@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MyApi.WebApi;
+using MyApi.WebApi.Configurations;
+using MyApi.WebApi.Services;
+using System.ServiceModel;
+using System.Web.Services.Description;
+using WeatherReference;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +29,14 @@ builder.Services.AddDbContext<WeatherContext>(options =>
     {
         providerOptions.EnableRetryOnFailure();
     }));
+
+
+var weatherSoapConfigurationUrl = builder.Configuration.GetSection("WeatherSoapService")["BaseUrl"];
+
+builder.Services.AddHttpClient<WeatherService>();
+
+builder.Services.AddSingleton<IWeatherService>(provider => new WeatherService(provider.GetRequiredService<HttpClient>(), weatherSoapConfigurationUrl));
+
 
 var app = builder.Build();
 

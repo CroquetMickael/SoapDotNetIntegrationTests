@@ -2,13 +2,18 @@
 
 using Hooks;
 using System.Net;
-using System.Text;
 using System.Text.Json;
 using BoDi;
-using Newtonsoft.Json;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using JsonSerializer = System.Text.Json.JsonSerializer;
+using WeatherReference;
+using MyApi.WebApi.Tests.Configurations;
+using System.Collections.Specialized;
+using Moq;
+using MyApi.WebApi.Services;
+using Azure.Core;
+using Azure;
+using Docker.DotNet.Models;
 
 [Binding]
 internal class WeatherWebApiSteps
@@ -58,6 +63,16 @@ internal class WeatherWebApiSteps
         _scenarioContext.Add(ForecastKey, forecast);
     }
 
+    //[Given("The external service forecast respond")]
+    //public void GivenTheExternalServiceForecastRespond(Table table)
+    //{
+    //    var httpResponse = table.CreateInstance<WeatherReturn>();
+    //    var mock = _scenarioContext.Get<Mock<IWeatherService>>("weatherService");
+
+    //    mock.Setup(x => x.GetWeather(It.IsAny<string>()))
+    //        .ReturnsAsync(httpResponse);
+    //}
+
     [When("I make a GET request to '(.*)'")]
     public async Task WhenIMakeAGetRequestTo(string endpoint)
     {
@@ -65,19 +80,14 @@ internal class WeatherWebApiSteps
         _scenarioContext.Add(ResponseKey, await client.GetAsync(endpoint));
     }
 
-    [When("I save it")]
-    public async Task WhenISaveIt()
+    [When("I make a GET request to '(.*)' with: '(.*)' zip code")]
+    public async Task WhenIMakeAGetRequestToWith(string endpoint, string zipCode)
     {
         var client = _scenarioContext.Get<HttpClient>(InitWebApplicationFactory.HttpClientKey);
-
-        var weatherForecast = _scenarioContext.Get<WeatherForecast>(ForecastKey);
-
-        var stringContent = new StringContent(
-            JsonConvert.SerializeObject(weatherForecast),
-            Encoding.UTF8,
-            "application/json");
-
-        _scenarioContext.Add(ResponseKey, await client.PostAsync("weatherforecast", stringContent));
+        NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
+        queryString.Add("codeZip", zipCode);
+        var url = $"{endpoint}?{queryString.ToString()}";
+        _scenarioContext.Add(ResponseKey, await client.GetAsync(url));
     }
 
     [Then(@"the response status code is '(.*)'")]
@@ -92,17 +102,14 @@ internal class WeatherWebApiSteps
     {
         var response = await _scenarioContext.Get<HttpResponseMessage>(ResponseKey).Content.ReadAsStringAsync();
 
-        var expected = table.CreateInstance<WeatherForecast>();
-        var actual = JsonSerializer.Deserialize<WeatherForecast>(response, new JsonSerializerOptions
+        var expected = table.CreateInstance<WeatherReturn>();
+        var actual = JsonSerializer.Deserialize<WeatherReturn>(response, new JsonSerializerOptions
         {
             IgnoreReadOnlyProperties = true,
             PropertyNameCaseInsensitive = true
         });
 
         Assert.NotNull(actual);
-        Assert.Equal(expected.Date, actual.Date);
-        Assert.Equal(expected.TemperatureC, actual.TemperatureC);
-        Assert.Equal(expected.TemperatureF, actual.TemperatureF);
-        Assert.Equal(expected.Summary, actual.Summary);
+        Assert.Equal(JsonSerializer.Serialize(expected), JsonSerializer.Serialize(actual));
     }
 }
