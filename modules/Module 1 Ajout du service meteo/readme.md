@@ -124,14 +124,12 @@ public interface IWeatherService
 
 Dans le Program.cs, nous allons ajouter l'injection de dépendance pour notre service, cela est découpé en deux temps.
 
-L'ajout de notre classe de service et son interface, puis l'ajout de l'HTTPClient pour notre service REST avec l'URL d'appel.
+L'ajout de notre classe de service et son interface, puis l'ajout de l'HTTPClient pour notre service SOAP avec l'URL d'appel.
 
 ```cs
-var weatherSoapConfigurationUrl = builder.Configuration.GetSection("WeatherSoapService")["BaseUrl"];
-
 builder.Services.AddHttpClient<WeatherService>();
 
-builder.Services.AddSingleton<IWeatherService>(provider => new WeatherService(provider.GetRequiredService<HttpClient>(), weatherSoapConfigurationUrl));
+builder.Services.AddSingleton<IWeatherService>(provider => new WeatherService(provider.GetRequiredService<HttpClient>(), "http://whateverurl"));
 
 ```
 
