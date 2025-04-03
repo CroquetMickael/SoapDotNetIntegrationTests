@@ -108,14 +108,14 @@ Nous allons modifier le hook de démarrage de nos tests pour permettre le mockin
     public static void ReplaceExternalServices(IServiceCollection services, ScenarioContext scenarioContext)
     {
 
-        var mockApiSanteMoralPersonne = new Mock<IWeatherService>();
+        var mockWeatherService = new Mock<IWeatherService>();
 
-        services.AddTransient(provider => mockApiSanteMoralPersonne.Object);
-        scenarioContext.TryAdd("weatherService", mockApiSanteMoralPersonne);
+        services.AddTransient(provider => mockWeatherService.Object);
+        scenarioContext.TryAdd("weatherService", mockWeatherService);
     }
 ```
 
-Cette nouvelle méthode créer un Mock avec [Moq](https://github.com/devlooped/moq) et vient l'injecter en transient dans tout notre projet, nous devons préciser `mockApiSanteMoralPersonne.Object` pour qu'il sorte le type demandé par l'injection de dépendance sinon il enverrai toujours le type `Mock<IWeatherService>` hors nous voulons injecter `IWeatherService`.
+Cette nouvelle méthode créer un Mock avec [Moq](https://github.com/devlooped/moq) et vient l'injecter en transient dans tout notre projet, nous devons préciser `mockWeatherService.Object` pour qu'il sorte le type demandé par l'injection de dépendance sinon il enverrai toujours le type `Mock<IWeatherService>` hors nous voulons injecter `IWeatherService`.
 
 Une fois cela fait, nous mettons à disposition dans notre scenarioContext la clé qui nous permettra d'utiliser l'objet de Mock pour surcharger les réponses de nos méthodes/fonction.
 
