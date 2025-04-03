@@ -148,7 +148,7 @@ Et pour finir, nous ajoutons cette méthode `ReplaceExternalServices` dans notre
 
 Lancez vos tests et vous devriez normalement avoir ce résultat:
 
-IMAGE
+![Test en succès](./img/successTest.png)
 
 ```
 git clone https://github.com/CroquetMickael/SoapDotNetIntegrationTests.git --branch feature/module2
